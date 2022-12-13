@@ -34,6 +34,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTH_USER_MODEL = 'users.Users'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.users',
+    'apps.posts',
+    'apps.comments',
+    'apps.categories',
+    'apps.media',
 ]
 
 MIDDLEWARE = [
