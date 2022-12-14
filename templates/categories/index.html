@@ -26,10 +26,10 @@
                 {% for category in categories %}
                 <tr>
                     <td class="py-4 whitespace-nowrap">{{ category.id }}</td>
-                    <td class="py-4 whitespace-nowrap text-sm text-gray-500 whitespace-pre-line">{{ category.name }}</td>
-                    <td class="py-4 whitespace-nowrap text-sm text-gray-500 whitespace-pre-line">{{ category.description }}</td>
-                    <td class="py-4 whitespace-nowrap text-sm text-gray-500 whitespace-pre-line">{{category.created_at}}</td>
-                    <td class="py-4 whitespace-nowrap text-sm text-gray-500 whitespace-pre-line">{{category.updated_at}}</td>
+                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{ category.name }}</td>
+                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{ category.description }}</td>
+                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{category.created_at}}</td>
+                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{category.updated_at}}</td>
                     <td class="py-4 whitespace-nowrap text-sm text-blue-600">
                         <a href="{% url 'categories:edit' category.id %}">Editar</a> |
                         <button class="delete" data-id="{{ category.id }}" data-name="{{ category.name }}">Eliminar</button>
