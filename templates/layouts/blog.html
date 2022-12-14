@@ -37,17 +37,21 @@
         <nav class="bg-white px-6 py-4 shadow">
             <div class="flex flex-col container mx-auto md:flex-row md:items-center md:justify-between">
                 <div class="flex justify-between items-center">
-                    <div><a href="{% url 'index' %}" class="text-gray-800 text-xl font-bold md:text-2xl">Color y <span
-                                class="text-blue-500">alegria</span></a></div>
-                    <div><button type="button"
-                            class="block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden"><svg
-                                viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                    <div>
+                        <a href="{% url 'index' %}" class="text-gray-800 text-xl font-bold md:text-2xl">Color y <span class="text-blue-500">alegria</span></a>
+                    </div>
+                    <div>
+                        <button type="button" class="menu block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden">
+                            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
                                 <path
                                     d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
                                 </path>
-                            </svg></button></div>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-col md:flex-row md:-mx-4 md:block">
+                
+                <div class="menuList flex flex-col md:flex-row md:-mx-4 md:block hidden">
                     <a href="{% url 'index' %}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Inicio</a>
                     <a href="#" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Blog</a>
                     <a href="#" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Nosotros</a>
@@ -184,6 +188,21 @@
     </div>
 
     {% block js %}{% endblock js %}
+    <script>
+        let menuBtn = document.querySelector('.menu');
+        let menuList = document.querySelector('.menuList');
+        menuBtn.addEventListener('click', () => toggleMenu());
+        const toggleMenu = () => {
+            if (menuList.classList.contains('hidden')) {
+                menuList.classList.add('block');
+                menuList.classList.remove('hidden');
+            }
+            else{
+                menuList.classList.add('hidden');
+                menuList.classList.remove('block');
+            }
+        }
+    </script>
 </body>
 
 </html>
