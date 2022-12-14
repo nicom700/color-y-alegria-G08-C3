@@ -4,7 +4,7 @@ from apps.users.models import Users
 
 # Create your models here.
 class Posts(models.Model):
-    slug = models.CharField(max_length=255)
+    slug = models.CharField(max_length=255, unique=True)
     title = models.CharField(max_length=255)
     body = models.TextField()
     is_published = models.BooleanField(default=False)
