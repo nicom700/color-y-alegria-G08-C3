@@ -1,0 +1,207 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	{% compress css %}
+	<link rel="stylesheet" href="{% static 'src/output.css' %}">
+	{% endcompress %}
+
+	{% block css %}{% endblock css %}
+
+	<script>
+		// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+		if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<div class="flex min-h-screen">
+
+
+
+
+		<aside class="hidden w-64 bg-gray-800 sm:block">
+			<div
+				class="py-3 text-2xl uppercase text-center tracking-widest bg-gray-900 border-b-2 border-gray-800 mb-8">
+				<a aria-current="page" href="/" class="router-link-active router-link-exact-active text-white">Color y alegria</a>
+			</div>
+			<nav class="text-sm text-gray-300">
+				<ul class="flex flex-col">
+					<li class="px-4 py-2 text-xs uppercase tracking-wider text-gray-500 font-bold">Administracion</li>
+					<li class="px-4 cursor-pointer{% if None in request.path %}bg-gray-500 text-gray-800 {% else %} hover:bg-gray-700 {% endif %}">
+						<a class="py-3 flex items-center" href="{% url 'index' %}">
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+								</path>
+							</svg>
+							Inicio
+						</a>
+					</li>
+					<li class="px-4 cursor-pointer{% if 'categories' in request.path %} bg-gray-500 text-gray-800 {% else %} hover:bg-gray-700 {% endif %}">
+						<a href="{% url 'categories:index' %}" class="py-2 flex items-center"><svg class="h-5 w-5 mr-2"
+								viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z"
+									fill="currentColor"></path>
+								<path
+									d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z"
+									fill="currentColor"></path>
+								<path
+									d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z"
+									fill="currentColor"></path>
+								<path
+									d="M11 13C11 11.8954 11.8954 11 13 11H15C16.1046 11 17 11.8954 17 13V15C17 16.1046 16.1046 17 15 17H13C11.8954 17 11 16.1046 11 15V13Z"
+									fill="currentColor"></path>
+							</svg> Categorias </a>
+					</li>
+					<li class="px-4 py-2 mt-2 text-xs uppercase tracking-wider text-gray-500 font-bold">Pages</li>
+					<li class="px-4 cursor-pointer hover:bg-gray-700"><a href="/logout"
+							class="py-2 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
+								fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+								</path>
+							</svg> Cerrar sesion </a></li>
+				</ul>
+			</nav>
+		</aside>
+
+
+		<div class="flex flex-col flex-grow bg-gray-200">
+			<header class="flex justify-between bg-white border-b-2 px-4 sm:justify-end sm:px-6 dark:bg-slate-800"><button
+					class="sm:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none"
+						viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg></button>
+				<div class="flex">
+
+
+
+
+					<button id="theme-toggle" type="button"
+						class="border rounded-sm bg-gray-200 px-2.5 py-2 text-xs hover:bg-gray-300 text-gray-500 dark:text-gray-400
+						 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 p-2.5 my-2.5">
+						<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg">
+							<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+						</svg>
+						<svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+								fill-rule="evenodd" clip-rule="evenodd"></path>
+						</svg>
+					</button>
+
+
+
+
+					<button id="headlessui-menu-button-47" type="button" aria-haspopup="true" aria-expanded="false"
+						class="flex items-center space-x-2 px-2 py-3 text-sm hover:bg-gray-200 focus:outline-none"><img
+							class="h-8 w-8 rounded-full"
+							src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+							alt=""><span>John Doe</span><svg xmlns="http://www.w3.org/2000/svg"
+							class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+							</path>
+						</svg></button>
+				</div>
+			</header>
+
+
+			<div class="mb-auto">
+				<!-- <div class="flex justify-between px-4 mt-4 sm:px-8">
+					<h2 class="text-2xl text-gray-600">Dashboard</h2>
+				</div> -->
+
+
+				<div class="p-4 mt-8 sm:px-8 sm:py-4">
+
+					<div class="bg-white border rounded-lg shadow">
+						{% block content %}{% endblock content %}
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+	<script>
+		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+		var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+		// Change the icons inside the button based on previous settings
+		if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+			themeToggleLightIcon.classList.remove('hidden');
+		} else {
+			themeToggleDarkIcon.classList.remove('hidden');
+		}
+
+		var themeToggleBtn = document.getElementById('theme-toggle');
+
+		themeToggleBtn.addEventListener('click', function () {
+
+			// toggle icons inside button
+			themeToggleDarkIcon.classList.toggle('hidden');
+			themeToggleLightIcon.classList.toggle('hidden');
+
+			// if set via local storage previously
+			if (localStorage.getItem('color-theme')) {
+				if (localStorage.getItem('color-theme') === 'light') {
+					document.documentElement.classList.add('dark');
+					localStorage.setItem('color-theme', 'dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+					localStorage.setItem('color-theme', 'light');
+				}
+
+				// if NOT set via local storage previously
+			} else {
+				if (document.documentElement.classList.contains('dark')) {
+					document.documentElement.classList.remove('dark');
+					localStorage.setItem('color-theme', 'light');
+				} else {
+					document.documentElement.classList.add('dark');
+					localStorage.setItem('color-theme', 'dark');
+				}
+			}
+
+		});
+	</script>
+	
+	{% block js %}{% endblock js %}
+
+
+</body>
+
+</html>
