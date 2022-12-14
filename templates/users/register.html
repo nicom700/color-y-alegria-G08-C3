@@ -1,0 +1,62 @@
+{% extends 'layouts/blog.html' %}
+
+{% block content %}    
+    <div class="mt-4">
+        <h2 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl dark:text-white">Registrarme</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            {% include 'includes/errors_form.html' %}
+            
+            <div class="w-full mb-2">
+                <label for="id_first_name">Nombre:</label>
+                <input type="text" name="first_name" autofocus="" required="" id="id_first_name" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+      
+                <span class="text-sm text-red-600"></span>
+            </div>
+                        
+            <div class="w-full mb-2">
+                <label for="id_last_name">Apellido:</label>
+                <input type="text" name="last_name" required="" id="id_last_name" placeholder="Apellido" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+            </div>
+            
+            <div class="w-full mb-2">
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" maxlength="254" id="id_email" placeholder="Email" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+            </div>
+            
+            <div class="w-full mb-2">
+                <label for="id_username">Usuario:</label>
+                <input type="text" name="username" maxlength="150" required="" id="id_username" placeholder="Usuario" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+            </div>
+            
+            <div class="w-full mb-2">
+                <label for="id_password1">Contraseña:</label>
+                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="Contraseña" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                <span class="text-sm">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+            </div>
+            
+            <div class="w-full mb-2">                  
+                <ul class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800">
+                    <li class="font-medium">Your password can’t be too similar to your other personal information.</li>
+                    <li class="font-medium">Your password must contain at least 8 characters.</li>
+                    <li class="font-medium">Your password can’t be a commonly used password.</li>
+                    <li class="font-medium">Your password can’t be entirely numeric.</li>
+                </ul>
+            </div>
+            
+            <div class="w-full mb-2">
+                <label for="id_password2">Repetir contraseña:</label>
+                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Repetir contraseña" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                <span class="text-sm">Enter the same password as before, for verification.</span>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Registrarme
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+

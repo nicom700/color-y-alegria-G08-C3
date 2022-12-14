@@ -1,0 +1,34 @@
+{% extends 'layouts/blog.html' %}
+
+{% block content %}
+
+<div class="mt-4">
+    <h2 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl dark:text-white">Iniciar sesion</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        {% include 'includes/errors_form.html' %}
+    
+        <div class="w-full mb-2">
+            <label for="username">Usuario</label>
+            <input type="text" name="username" value="" maxlength="255" autofocus="" required="" id="username" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+        </div>
+        <div class="w-full mb-2">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" value="" maxlength="255" required="" id="password" placeholder="Contraseña" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+        </div>
+    
+        <div class="mt-4">
+            <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit" name="btn_ingresar">
+                Ingresar
+            </button>
+        </div>
+    
+        <div class="mt-4">
+            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{% url 'index' %}">Volver al inicio</a> | 
+            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{% url 'users:register' %}">Registrarme</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
