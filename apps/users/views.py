@@ -13,4 +13,4 @@ class Registro(CreateView):
     form_class = UserForm
 
     def get_success_url(self):
-        return reverse('users:login')
+        return reverse('login')
