@@ -37,33 +37,46 @@
         <nav class="bg-white px-6 py-4 shadow">
             <div class="flex flex-col container mx-auto md:flex-row md:items-center md:justify-between">
                 <div class="flex justify-between items-center">
-                    <div><a href="#" class="text-gray-800 text-xl font-bold md:text-2xl">Color y <span
-                                class="text-blue-500">alegria</span></a></div>
-                    <div><button type="button"
-                            class="block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden"><svg
-                                viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                    <div>
+                        <a href="{% url 'index' %}" class="text-gray-800 text-xl font-bold md:text-2xl">Color y <span class="text-blue-500">alegria</span></a>
+                    </div>
+                    <div>
+                        <button type="button" class="menu block text-gray-800 hover:text-gray-600 focus:text-gray-600 focus:outline-none md:hidden">
+                            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
                                 <path
                                     d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
                                 </path>
-                            </svg></button></div>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-col md:flex-row md:-mx-4 md:block"><a href="#"
-                        class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Inicio</a><a href="#"
-                        class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Blog</a><a href="#"
-                        class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Nosotros</a></div>
+                
+                <div class="menuList flex flex-col md:flex-row md:-mx-4 md:block hidden">
+                    <a href="{% url 'index' %}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Inicio</a>
+                    <a href="#" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Blog</a>
+                    <a href="#" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Nosotros</a>
+
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Cerrar sesion</a> 
+                    {% else %}
+                    <a href="{% url 'login' %}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Iniciar sesion</a>
+                    <a href="{% url 'users:register' %}" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Registrarme</a>
+                    {% endif %}
+
+                </div>
             </div>
         </nav>
         <div class="px-6 py-8">
             <div class="flex justify-between container mx-auto">
                 <div class="w-full lg:w-8/12">
-                    <div class="flex items-center justify-between">
+                    <!-- <div class="flex items-center justify-between">
                         <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Blog</h1>
-                        <!-- <div><select
+                        <div><select
                                 class="block bg-gray-300 text-gray-700 py-2 px-2 rounded-lg focus:outline-none md:py-3">
                                 <option>Latest</option>
                                 <option>Last Week</option>
-                            </select></div> -->
-                    </div>
+                            </select></div>
+                    </div> -->
                     
                     {% block content %}{% endblock content %}
 
@@ -112,15 +125,15 @@
                         </div>
                     </div> -->
                     <div class="mt-2 px-8">
-                        <h1 class="mb-4 text-xl font-bold text-gray-700">Categories</h1>
+                        <h1 class="mb-4 text-xl font-bold text-gray-700">Categorias</h1>
                         <div class="flex flex-col bg-white px-4 py-6 max-w-sm rounded-lg shadow-md">
                             <ul>
-                                <li><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- AWS</a></li>
+                                <!-- <li><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- AWS</a></li>
                                 <li class="mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- Laravel</a></li>
                                 <li class="mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- Vue</a></li>
                                 <li class="mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- Design</a></li>
                                 <li class="flex items-center mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- Django</a></li>
-                                <li class="flex items-center mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- PHP</a></li>
+                                <li class="flex items-center mt-2"><a href="#" class="text-gray-700 font-bold mx-1 hover:text-gray-600 hover:underline">- PHP</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -175,6 +188,21 @@
     </div>
 
     {% block js %}{% endblock js %}
+    <script>
+        let menuBtn = document.querySelector('.menu');
+        let menuList = document.querySelector('.menuList');
+        menuBtn.addEventListener('click', () => toggleMenu());
+        const toggleMenu = () => {
+            if (menuList.classList.contains('hidden')) {
+                menuList.classList.add('block');
+                menuList.classList.remove('hidden');
+            }
+            else{
+                menuList.classList.add('hidden');
+                menuList.classList.remove('block');
+            }
+        }
+    </script>
 </body>
 
 </html>

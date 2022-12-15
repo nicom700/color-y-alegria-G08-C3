@@ -3,46 +3,48 @@
 {% block content %}
 
 <div class="flex justify-between items-center px-4 py-2 mb-2 border-b-2 text-gray-600">
-    <h3 class="tracking-wider">Categorias</h3>
+    <h3 class="tracking-wider font-medium">Categorias</h3>
     <a href="{% url 'categories:create' %}"
         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Nueva categoria</a>
 </div>
 
-<div class="px-4">
+<div class="px-2">
     <div id="dataContainer">
-        <table class="table-fixed min-w-full divide-y divide-gray-200">
-            <thead>
-                <tr>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripcion</th>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creacion</th>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actualizacion</th>
-                    <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opciones</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200 text-sm text-gray-500">
-                
-                {% for category in categories %}
-                <tr>
-                    <td class="py-4 whitespace-nowrap">{{ category.id }}</td>
-                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{ category.name }}</td>
-                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{ category.description }}</td>
-                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{category.created_at}}</td>
-                    <td class="py-4 text-sm text-gray-500 whitespace-pre-line">{{category.updated_at}}</td>
-                    <td class="py-4 whitespace-nowrap text-sm text-blue-600">
-                        <a href="{% url 'categories:edit' category.id %}">Editar</a> |
-                        <button class="delete" data-id="{{ category.id }}" data-name="{{ category.name }}">Eliminar</button>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6" class="py-4 whitespace-nowrap">No se encontraron categorias.</td>
-                </tr>
-                {% endfor %}
-                
-            </tbody>
-        </table>
+        <div class="overflow-auto relative">
+            <table class="table-fixed min-w-full divide-y divide-gray-200 mb-4">
+                <thead>
+                    <tr>
+                        <th scope="col" class="w-[50px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                        <th scope="col" class="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                        <th scope="col" class="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripcion</th>
+                        <th scope="col" class="w-[180px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creacion</th>
+                        <th scope="col" class="w-[180px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actualizacion</th>
+                        <th scope="col" class="w-[100px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 text-sm text-gray-500">
+                    
+                    {% for category in categories %}
+                    <tr class="odd:bg-gray-100">
+                        <td class="p-3 whitespace-nowrap">{{ category.id }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{ category.name }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{ category.description }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{category.created_at}}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{category.updated_at}}</td>
+                        <td class="p-3 whitespace-nowrap text-sm text-blue-600">
+                            <a href="{% url 'categories:edit' category.id %}">Editar</a> |
+                            <button class="delete" data-id="{{ category.id }}" data-name="{{ category.name }}">Eliminar</button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="py-4 whitespace-nowrap">No se encontraron categorias.</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
         <div class="overlay hidden_ fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full justify-center items-center flex">
             <div class="modal_ hidden_ relative w-full h-full max-w-md md:h-auto">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">

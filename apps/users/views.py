@@ -1,3 +1,5 @@
+from django.urls import reverse
+from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.urls import reverse
@@ -11,4 +13,4 @@ class Registro(CreateView):
     form_class = UserForm
 
     def get_success_url(self):
-        return reverse("login")
+        return reverse('users:login')
