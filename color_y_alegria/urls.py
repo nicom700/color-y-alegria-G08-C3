@@ -30,5 +30,6 @@ urlpatterns = [
     path('categories/', include('apps.categories.urls')),
     path('users/', include('apps.users.urls')),
     path('posts/', include('apps.posts.urls')),
+    path('blog/', include('apps.blog.urls')),
 
 ]
