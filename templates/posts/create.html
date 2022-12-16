@@ -19,11 +19,13 @@
                     <span class="text-sm text-red-600">{{ form.title.errors }}</span>
                 </div>
             </div>
-            {% for category in categories %}
+            
             <select name="category" id="">
+                {% for category in categories %}
                 <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
             </select>
-            {% endfor %}
+             
             <div class="p-2 flex">
                 <label class="w-1/4 inline py-2 pr-4 text-right" for="{{ form.body.id_for_label }}">Contenido</label>
                 <div class="w-full">
