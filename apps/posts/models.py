@@ -5,7 +5,7 @@ from apps.users.models import Users
 # Create your models here.
 class Posts(models.Model):
     slug = models.CharField(max_length=255, unique=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank = False, null = False)
     body = models.TextField()
     is_published = models.BooleanField(default=False)
     allow_comments = models.BooleanField(default=True)
@@ -13,7 +13,10 @@ class Posts(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(Users, on_delete=models.RESTRICT)
     category = models.ForeignKey(Categories, on_delete=models.RESTRICT)
-    
+
     class Meta:
         managed = True
         db_table = 'posts'
+
+#imagenes
+#imagen = models.ImageField(upload to="", null=True, blank=True)#

@@ -25,9 +25,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.logout_then_login, name='logout'),
-
+    
     #includes
     path('categories/', include('apps.categories.urls')),
     path('users/', include('apps.users.urls')),
+    path('posts/', include('apps.posts.urls')),
 
 ]
