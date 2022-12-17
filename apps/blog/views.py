@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView
+from apps.comments.forms import CommentForm
+from apps.comments.models import Comments
 
 from apps.posts.models import Posts
 from apps.categories.models import Categories
@@ -19,7 +21,21 @@ class Index(ListView):
 def Show(request, slug):
     post = get_object_or_404(Posts, slug = slug)
     
-    #post = Posts.objects.filter(slug=slug)
-    categories = Categories.objects.filter(id=post.category_id)
-    context = {'post': post, 'categories': categories}
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.post = post
+            form.user_id = request.user.id
+            form.save()
+
+            return redirect('blog:show', slug = slug)
+    else:
+        form = CommentForm()
+
+    categories = Categories.objects.filter(id = post.category_id)
+    comments = Comments.objects.filter(post_id = post.id)
+    context = {'post': post, 'categories': categories, 'comments': comments, 'form': form}
+
     return render(request, 'blog/show.html', context)
+
