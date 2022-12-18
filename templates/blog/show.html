@@ -73,6 +73,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% if request.user.is_authenticated %}
         <div class="mt-12 mb-4">
             <form action="" method="POST" class="w-full bg-white rounded-lg">
                 {% csrf_token %}
@@ -87,6 +88,11 @@
                 </div>
             </form>
         </div>
+        {% else %}
+        <div class="mt-12 mb-4">
+            <h2 class="pt-3 pb-2 text-lg font-bold text-center text-gray-700"><a href="{% url 'login' %}" class="underline hover:text-blue-500">Inicie sesión</a> o <a href="{% url 'users:register' %}" class="underline hover:text-blue-500">Regístrese</a> para dejar su comentario</h2>
+        </div>
+        {% endif %}
         <div class="flex items-center justify-center pb-10">
             <a href="{% url 'blog:index' %}" class="px-4 py-2 mt-2 text-gray-600 border border-gray-300 rounded-lg dark:text-gray-200 dark:border-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
                 Leer otras publicaciones
