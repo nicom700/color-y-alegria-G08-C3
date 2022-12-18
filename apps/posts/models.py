@@ -17,6 +17,7 @@ class Posts(models.Model):
     class Meta:
         managed = True
         db_table = 'posts'
+        ordering = ('-created_at',)
 
 #imagenes
 #imagen = models.ImageField(upload to="", null=True, blank=True)#

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'apps.posts',
     'apps.comments',
     'apps.categories',
+    'apps.blog',
     'apps.media',
 ]
 
