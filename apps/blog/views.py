@@ -11,12 +11,17 @@ class Index(ListView):
     template_name = 'blog/index.html'
     model = Posts
     context_object_name = 'posts'
-    paginate_by = 10
+    paginate_by = 5
+
+    def get_queryset(self):
+        posts = Posts.objects.all()
+        return posts
 
     def get_context_data(self, *args, **kwargs):
-        posts = Posts.objects.all()
-        categories = Categories.objects.all()
-        return {'posts':posts, 'categories':categories}
+        context = super(Index, self).get_context_data(**kwargs)
+        context['page_obj'] = context.pop('page_obj', None)
+        context['categories'] = Categories.objects.all()
+        return context
 
 def Show(request, slug):
     post = get_object_or_404(Posts, slug = slug)
