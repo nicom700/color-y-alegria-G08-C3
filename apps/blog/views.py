@@ -44,3 +44,11 @@ def Show(request, slug):
 
     return render(request, 'blog/show.html', context)
 
+
+def category(request, category_id):
+    try:
+        category = get_object_or_404(Categories, id=category_id)
+        posts = Posts.objects.filter(category=category_id)
+        return render(request, 'category/category.html',{'category':category, 'posts':posts, 'categories': Categories.objects.all})
+    except:
+        return render(request, 'blog/show.html')
