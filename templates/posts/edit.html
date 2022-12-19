@@ -35,12 +35,11 @@
             </div>            
              
             <div class="flex p-2">
-                <label class="inline w-1/4 py-2 pr-4 text-right" for="{{ form.body.id_for_label }}">Contenido</label>
+                <label class="inline w-1/4 py-2 pr-4 text-right">Contenido</label>
                 <div class="w-full">
 
-                    <textarea id="{{ form.body.id_for_label }}" name="body"
+                    <textarea id="tinymceElement" name="body" placeholder="Ingrese el contenido de la publicación"
                         class="min-h-[100px] focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3"
-                         placeholder="Ingrese el contenido de la publicación"
                         spellcheck="false">{{ form.body.value }}</textarea>
 
                     <span class="text-sm text-red-600">{{ form.body.errors }}</span>
@@ -60,3 +59,24 @@
 </div>
 
 {% endblock content %}
+
+{% block css %}
+<style>
+    .tox-promotion{
+        display: none;
+    }
+</style>
+{% endblock css %}
+
+{% block js %}
+{% load static %}
+<script src="{% static 'src/js/tinymce/tinymce.min.js' %}"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#tinymceElement',
+        language: 'es_MX',
+        plugins: 'code table lists advlist charmap emoticons image preview wordcount',
+        toolbar: 'undo redo | formatselect| bold italic | fontfamily fontsize blocks | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | emoticons | image | preview | wordcount'
+    });
+</script>
+{% endblock js %}

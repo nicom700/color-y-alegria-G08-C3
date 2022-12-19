@@ -28,7 +28,7 @@
         <div class="container mx-auto max-md:px-2">
             
             <div id="post" class="max-w-2xl mx-auto max-sm:px-4">
-                <div class="mb-6 text-lg leading-loose text-gray-800">{{ post.body|linebreaks }}</div>
+                <div class="mb-6 text-lg leading-loose text-gray-800">{{ post.body|safe }}</div>
             </div>
 
             <div class="overflow-hidden text-gray-700">
@@ -125,8 +125,33 @@
 
 {% block css %}
 <style>
+    #post h1,
+    #post h2,
+    #post h3,
+    #post h4,
+    #post h5,
+    #post h6{
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+    }
+    #post h1{
+        font-size: 2rem;
+    }
+    #post h2{
+        font-size: 1.5rem;
+    }
+    #post h3{
+        font-size: 1.4rem;
+    }
     #post p{
-        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    #post table{
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+    }
+    #post td, #post th {
+        border: 1px solid #000;
     }
 </style>
 {% endblock css %}

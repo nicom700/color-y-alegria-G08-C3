@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Users(AbstractUser):
-    photo = models.CharField(max_length=255, default=None, null=True)
+    photo = models.ImageField(upload_to='users', null=True, blank=True, default=None)
     is_admin = models.BooleanField(default=False)
 
     class Meta:
