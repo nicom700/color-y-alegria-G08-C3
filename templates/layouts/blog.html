@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-col hidden menuList md:flex-row md:-mx-4 md:block">
+                <div class="flex flex-col hidden menuList md:flex-row md:-mx-4 md:block max-md:mt-5">
                     <a href="{% url 'index' %}" class="{% if request.get_full_path == '/' %} font-bold {% endif %} my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Inicio</a>
                     <a href="{% url 'blog:index' %}" class="{% if 'blog' in request.path %} font-bold {% endif %} my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Blog</a>
                     <a href="#" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Nosotros</a>

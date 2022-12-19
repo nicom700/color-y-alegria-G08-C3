@@ -49,11 +49,16 @@
             </div>
 
             <div class="flex p-2">
-                <label class="inline w-1/4 py-2 pr-4 text-right" for="{{ form.image.id_for_label }}">Seleccione la portada</label>
+                <label class="inline w-1/4 py-2 pr-4 text-right" for="first_photo">Portada de la publicación</label>
                 <div class="w-full">
+                    <input type="file" id="first_photo" name="first_photo">
+                </div>
+            </div>
 
-                    <input type="file" id="image" name="image" >
-                    
+            <div class="flex p-2">
+                <label class="inline w-1/4 py-2 pr-4 text-right" for="photos">Fotos para la galeria</label>
+                <div class="w-full">
+                    <input type="file" id="photos" name="photos" multiple>
                 </div>
             </div>
 

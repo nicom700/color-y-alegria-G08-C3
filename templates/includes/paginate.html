@@ -1,62 +1,65 @@
 {% if is_paginated %}
-<div class="mt-8">
-    <ul class="flex justify-center">
-        {% if page_obj.number == 1 %}
-        <li>
-            <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Primera</span>
-        </li>
-        {% else %}
-        <li>
-            <a href="?page=1" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Primera</a>
-        </li>
-        {% endif %}
+    {% if page_obj.has_other_pages %}
 
-        {% if page_obj.has_previous %}
-        <li>
-            <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Anterior</a>
-        </li>
-        {% else %}
-        <li>
-            <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Anterior</span>
-        </li>
-        {% endif %}
-
-        {% for i in paginator.page_range %}
-            {% if page_obj.number == i %}
+    <div class="mt-8">
+        <ul class="flex justify-center max-md:flex-col max-md:gap-2 max-md:items-center max-md:mx-auto">
+            {% if page_obj.number == 1 %}
             <li>
-                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-100 bg-gray-600 rounded-lg cursor-default hover:bg-gray-600 hover:text-gray-100">
-                    {{ i }}
-                </span>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Primera</span>
             </li>
-            {% elif page_obj.number|add:'-3' <= i and page_obj.number|add:'3' >= i %}
+            {% else %}
             <li>
-                <a href="?page={{i}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 rounded-lg hover:bg-gray-700 hover:text-gray-200">
-                    {{ i }}
-                </a>
+                <a href="?page=1" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Primera</a>
             </li>
             {% endif %}
-        {% endfor %}
 
-        {% if page_obj.has_next %}
-        <li>
-            <a href="?page={{ page_obj.next_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Siguiente</a>
-        </li>
-        {% else %}
-        <li>
-            <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Siguiente</span>
-        </li>
-        {% endif %}
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Anterior</a>
+            </li>
+            {% else %}
+            <li>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Anterior</span>
+            </li>
+            {% endif %}
 
-        {% if page_obj.number == paginator.num_pages %}
-        <li>
-            <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Ultima</span>
-        </li>
-        {% else %}
-        <li>
-            <a href="?page={{paginator.num_pages}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Ultima</a>
-        </li>
-        {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li>
+                    <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-100 bg-gray-600 rounded-lg cursor-default hover:bg-gray-600 hover:text-gray-100">
+                        {{ i }}
+                    </span>
+                </li>
+                {% elif page_obj.number|add:'-3' <= i and page_obj.number|add:'3' >= i %}
+                <li>
+                    <a href="?page={{i}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 rounded-lg hover:bg-gray-700 hover:text-gray-200">
+                        {{ i }}
+                    </a>
+                </li>
+                {% endif %}
+            {% endfor %}
 
-    </ul>
-</div>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Siguiente</a>
+            </li>
+            {% else %}
+            <li>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Siguiente</span>
+            </li>
+            {% endif %}
+
+            {% if page_obj.number == paginator.num_pages %}
+            <li>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Ultima</span>
+            </li>
+            {% else %}
+            <li>
+                <a href="?page={{paginator.num_pages}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Ultima</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+    {% endif %}
 {% endif %}

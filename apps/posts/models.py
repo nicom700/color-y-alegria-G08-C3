@@ -13,12 +13,8 @@ class Posts(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(Users, on_delete=models.RESTRICT)
     category = models.ForeignKey(Categories, on_delete=models.RESTRICT)
-    image = models.ImageField(upload_to="posts", null=True, blank=True)
     
     class Meta:
         managed = True
         db_table = 'posts'
         ordering = ('-created_at',)
-
-#imagenes
-#imagen = models.ImageField(upload to="", null=True, blank=True)#
