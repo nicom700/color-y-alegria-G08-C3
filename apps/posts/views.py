@@ -39,6 +39,7 @@ def Create(request):
             post = form.save(commit=False)
             post.user_id = request.user.id
             post.slug = slugify(post.title)
+            post.image = request.FILES.get('image')
             post.save()            
             return redirect('posts:index')
 
