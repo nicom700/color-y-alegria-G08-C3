@@ -1,0 +1,60 @@
+{% extends 'layouts/blog.html' %}
+
+{% block content %}
+
+<div class="px-6 py-10">
+    <div class="container flex justify-between mx-auto">
+        <div class="items-center w-1/2 mx-auto max-sm:w-full">
+            <div class="mt-6 mb-10">
+                <div class="px-10 py-6 bg-white rounded-lg shadow-md">
+                    <div class="mt-2">
+                        <div class="">
+                            <div class="p-1 md:p-2">
+                                {% if request.user.photo %}
+                                <div class="relative items-center w-32 h-32 mx-auto rounded-full dark:bg-gray-600 ring-2 ring-gray-400 dark:ring-gray-500">
+                                    <img src="{{request.user.photo.url}}" class="block object-cover object-center w-full h-full rounded-full -left-1">
+                                </div>
+                                {% else %}
+                                <div class="relative items-center w-32 h-32 mx-auto overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 ring-2 ring-gray-400 dark:ring-gray-500">
+                                    <svg class="absolute text-gray-400 w-26 h-26 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <div class="my-4 text-center text-gray-600">No tienes foto de perfil</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p href="" class="text-3xl font-bold text-center text-gray-700">{{request.user.first_name}} {{request.user.last_name}}</p>
+                        <p href="" class="text-2xl font-bold text-center text-gray-500">@{{request.user.username}}</p>
+                    </div>
+                    <div class="items-center mt-8">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mt-4">
+                                <input type="file" id="photo" name="photo" accept="image/png, image/jpg, image/jpeg, image/gif, image/webp, image/bmp, image/tiff" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                            </div>
+                            <div class="flex p-2 mt-4">
+                                <div class="w-full">
+                                    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block css %}
+
+{% endblock css %}
+
+
+
+
+
+
+

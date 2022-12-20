@@ -7,7 +7,7 @@
         <h2 class="text-lg font-medium text-gray-700">Editar publicación</h2>
     </div>
     <div class="p-3 text-gray-600">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="flex p-2">
@@ -46,6 +46,20 @@
                 </div>
             </div>
 
+            <div class="flex p-2">
+                <label class="inline w-1/4 py-2 pr-4 text-right" for="first_photo">Portada de la publicación</label>
+                <div class="w-full">
+                    <input type="file" id="first_photo" name="first_photo" accept="image/png, image/jpg, image/jpeg, image/gif, image/webp, image/bmp, image/tiff" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                </div>
+            </div>
+
+            <div class="flex p-2">
+                <label class="inline w-1/4 py-2 pr-4 text-right" for="photos">Fotos para la galeria</label>
+                <div class="w-full">
+                    <input type="file" id="photos" name="photos" accept="image/png, image/jpg, image/jpeg, image/gif, image/webp, image/bmp, image/tiff" multiple class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                </div>
+            </div>
+            
             <div class="flex p-2 mt-4">
                 <label class="inline w-1/4 py-2 pr-4 text-right"></label>
                 <div class="w-full">

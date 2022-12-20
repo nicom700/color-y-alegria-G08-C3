@@ -24,12 +24,6 @@ class Index(ListView):
         categories = Categories.objects.all()
         return {'posts':posts, 'categories':categories}
 
-    #def get_queryset(self):
-    #    productos = Posts.objects.all()
-     #   categories = Categories.objects.all()
-        #return productos.order_by('-id')
-      #  return categories.order_by('-id')
-
 def Create(request):
     form = PostForm()
     categories = Categories.objects.all()

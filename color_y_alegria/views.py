@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
+from apps.categories.models import Categories
+
 def index(request):
     template_name = 'index.html'
-    
-    return render(request, template_name)
+    categories = Categories.objects.all()
+
+    return render(request, template_name, {'categories': categories})
