@@ -75,12 +75,22 @@
 
 {% endblock content %}
 
+{% block css %}
+<style>
+    .tox-promotion{
+        display: none;
+    }
+</style>
+{% endblock css %}
+
 {% block js %}
 {% load static %}
 <script src="{% static 'src/js/tinymce/tinymce.min.js' %}"></script>
 <script>
     tinymce.init({
         selector: 'textarea#tinymceElement',
+        //skin: "oxide-dark",
+        //content_css: "dark",
         language: 'es_MX',
         plugins: 'code table lists advlist charmap emoticons image preview wordcount',
         toolbar: 'undo redo | formatselect| bold italic | fontfamily fontsize blocks | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | emoticons | image | preview | wordcount'

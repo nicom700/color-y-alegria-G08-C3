@@ -4,7 +4,17 @@
 
 <div class="pb-8">
     <section class="">
-        <div class="mb-12 bg-no-repeat bg-cover" style="{% for photo in photos %}{% if photo.is_first == 1 %}background-image: url('{{photo.photo.url}}');{% endif %}{% endfor %};">
+
+    {% if photos %}
+        {% for photo in photos %}
+            {% if photo.is_first == 1 %}
+            <div class="mb-12 bg-no-repeat bg-cover" style="background-image: url('{{photo.photo.url}}');">       
+            {% endif %}
+        {% endfor %}
+    {% else %}
+            <div class="mb-12 bg-no-repeat bg-cover">
+    {% endif %}
+
             <div class="max-md:px-4" style="background-color: rgb(0 0 0 / 65%);">
                 <div class="max-w-2xl pt-32 pb-20 mx-auto">
                     <div class="mb-6 text-center">
@@ -35,7 +45,7 @@
         <div class="container mx-auto max-md:px-2">
             
             <div id="post" class="max-w-2xl mx-auto max-sm:px-4">
-                <div class="mb-6 text-lg leading-loose text-gray-800">{{ post.body|safe }}</div>
+                <div class="mb-6 text-lg leading-loose text-gray-800 dark:text-gray-400">{{ post.body|safe }}</div>
             </div>
 
             <div class="overflow-hidden text-gray-700">
@@ -64,7 +74,7 @@
             </div> -->
             <div class="max-w-2xl mx-auto mt-10 mb-6">
                 <div class="w-full">
-                    <div class="px-6 py-10 bg-white border border-gray-100 rounded shadow"
+                    <div class="px-6 py-10 bg-white border border-gray-100 rounded shadow dark:bg-gray-800 dark:border-none"
                         data-wow-delay=".1s" style="visibility: visible; animation-delay: 0.1s;">
                         <div class="flex items-center">
                             {% if post.user.photo %}
@@ -75,8 +85,8 @@
                             </div>
                             {% endif %}
                             <div class="pl-4">
-                                <strong class="mt-6 mb-1 text-gray-700 text-md">{{ post.user.first_name }} {{ post.user.last_name }}</strong>
-                                <p class="mt-3 text-xs text-gray-700">{{ post.user }}</p>
+                                <strong class="mt-6 mb-1 text-gray-700 dark:text-gray-400 text-md">{{ post.user.first_name }} {{ post.user.last_name }}</strong>
+                                <p class="mt-3 text-xs text-gray-700 dark:text-gray-400">{{ post.user }}</p>
                             </div>
                         </div>
                     </div>
@@ -85,10 +95,10 @@
         </div>
     </section>
 </div>
-<div class="pt-12 bg-white max-md:px-4">
+<div class="pt-12 bg-white max-md:px-4 dark:bg-gray-800">
     <div class="max-w-2xl mx-auto">
         <div class="max-w-screen-sm mx-auto antialiased">
-            <h3 class="mb-6 text-3xl font-semibold text-gray-700">Comentarios</h3>
+            <h3 class="mb-6 text-3xl font-semibold text-gray-700 dark:text-gray-200">Comentarios</h3>
             <div class="space-y-4">
                 {% for comment in comments %}
                 <div class="flex">
@@ -101,25 +111,25 @@
                         </div>
                         {% endif %}
                     </div>
-                    <div class="flex-1 px-4 py-2 leading-relaxed border border-gray-200 rounded-lg sm:px-6 sm:py-4">
-                        <strong>{{ comment.user }}</strong>
+                    <div class="flex-1 px-4 py-2 leading-relaxed border border-gray-200 rounded-lg sm:px-6 sm:py-4 dark:border-gray-700">
+                        <strong class="dark:text-gray-200">{{ comment.user }}</strong>
                         <span class="ml-2 text-xs text-gray-400">{{ comment.created_at }}</span>
-                        <p class="text-sm">{{ comment.body|linebreaks }}</p>
+                        <div class="text-sm break-all dark:text-gray-400">{{ comment.body|linebreaksbr }}</div>
                     </div>
                 </div>
                 {% empty%}
-                <div class="mt-4 text-gray-500">No hay comentarios, se el primero en comentar</div>
+                <div class="mt-4 text-gray-500 dark:text-gray-400">No hay comentarios, se el primero en comentar</div>
                 {% endfor %}
             </div>
         </div>
         {% if request.user.is_authenticated %}
         <div class="mt-12 mb-4">
-            <form action="" method="POST" class="w-full bg-white rounded-lg">
+            <form action="" method="POST" class="w-full bg-white rounded-lg dark:bg-gray-800">
                 {% csrf_token %}
                 <div class="flex flex-wrap mb-6">
-                    <h2 class="pt-3 pb-2 text-lg font-bold text-gray-700">Danos tu opinion</h2>
+                    <h2 class="pt-3 pb-2 text-lg font-bold text-gray-700 dark:text-gray-400">Danos tu opinion</h2>
                     <div class="w-full mt-2 mb-2 md:w-full">
-                        <textarea name="body" placeholder="Escriba un comentario" required="" class="w-full h-32 px-3 py-4 text-sm leading-normal bg-gray-100 border border-gray-300 rounded resize-none focus:ring-2 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-blue-300"></textarea>
+                        <textarea name="body" placeholder="Escriba un comentario" required="" class="w-full h-32 px-3 py-4 text-sm leading-normal bg-gray-100 border border-gray-300 rounded resize-none focus:ring-2 focus:bg-white focus:border-blue-500 focus:outline-none focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-500 dark:autofill:bg-transparent"></textarea>
                     </div>
                     <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Comentar
@@ -129,7 +139,9 @@
         </div>
         {% else %}
         <div class="mt-12 mb-4">
-            <h2 class="pt-3 pb-2 text-lg font-bold text-center text-gray-700"><a href="{% url 'login' %}" class="underline hover:text-blue-500">Inicie sesión</a> o <a href="{% url 'users:register' %}" class="underline hover:text-blue-500">Regístrese</a> para dejar su comentario</h2>
+            <h2 class="pt-3 pb-2 text-lg font-bold text-center text-gray-500 dark:text-gray-400">
+                <a href="{% url 'login' %}" class="text-gray-700 underline hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-500">Inicie sesión</a> o <a href="{% url 'users:register' %}" class="text-gray-700 underline hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-500">Regístrese</a> para dejar su comentario
+            </h2>
         </div>
         {% endif %}
         <div class="flex items-center justify-center pb-10">

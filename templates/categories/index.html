@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="flex items-center justify-between px-4 py-2 mb-2 text-gray-600 border-b-2">
+<div class="flex items-center justify-between px-4 py-2 mb-2 text-gray-600 border-b-2 rounded-t-lg dark:bg-gray-700 dark:text-gray-400 dark:border-gray-700">
     <h3 class="font-medium tracking-wider">Categorias</h3>
     <a href="{% url 'categories:create' %}"
         class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Nueva categoria</a>
@@ -11,7 +11,7 @@
 <div class="px-2">
     <div id="dataContainer">
         <div class="relative overflow-auto">
-            <table class="min-w-full mb-4 divide-y divide-gray-200 table-fixed">
+            <table class="min-w-full mb-4 divide-y divide-gray-200 table-fixed dark:divide-gray-900 dark:bg-gray-900">
                 <thead>
                     <tr>
                         <th scope="col" class="w-[50px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -22,16 +22,16 @@
                         <th scope="col" class="w-[100px] p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opciones</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm text-gray-500 divide-y divide-gray-200">
+                <tbody class="text-sm text-gray-500 divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-900">
                     
                     {% for category in categories %}
-                    <tr class="odd:bg-gray-100">
-                        <td class="p-3 whitespace-nowrap">{{ category.id }}</td>
-                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{ category.name }}</td>
-                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{ category.description }}</td>
-                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{category.created_at}}</td>
-                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line">{{category.updated_at}}</td>
-                        <td class="p-3 text-sm text-blue-600 whitespace-nowrap">
+                    <tr class="odd:bg-gray-100 even:bg-white dark:odd:bg-transparent dark:even:bg-gray-700">
+                        <td class="p-3 dark:text-gray-400 whitespace-nowrap">{{ category.id }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ category.name }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ category.description }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{category.created_at}}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{category.updated_at}}</td>
+                        <td class="p-3 text-sm text-blue-600 dark:text-blue-400 whitespace-nowrap">
                             <a href="{% url 'categories:edit' category.id %}">Editar</a> |
                             <button class="delete" data-id="{{ category.id }}" data-name="{{ category.name }}">Eliminar</button>
                         </td>
@@ -56,7 +56,7 @@
                         <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <h3 class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">Seguro que desea eliminar el registro <b id="targetContent"></b>?</h3>
                         <div class="mb-2">
-                            <span id="targetId"></span>
+                            <span id="targetId" class="text-gray-500 dark:text-gray-400"></span>
                         </div>
                         <form method="POST" action="" name="formDelete">
                             {% csrf_token %}

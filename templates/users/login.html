@@ -13,12 +13,12 @@
                     {% include 'includes/errors_form.html' %}
                 
                     <div class="w-full mb-4">
-                        <label for="username">Usuario</label>
-                        <input type="text" name="username" value="" maxlength="255" autofocus="" required="" id="username" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                        <label for="username" class="dark:text-gray-400">Usuario</label>
+                        <input type="text" name="username" value="" maxlength="255" autofocus="" required="" id="username" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-500 dark:autofill:bg-transparent">
                     </div>
                     <div class="w-full mb-4">
-                        <label for="password">Contraseña</label>
-                        <input type="password" name="password" value="" maxlength="255" required="" id="password" placeholder="Contraseña" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                        <label for="password" class="dark:text-gray-400">Contraseña</label>
+                        <input type="password" name="password" value="" maxlength="255" required="" id="password" placeholder="Contraseña" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-500 dark:autofill:bg-transparent">
                     </div>
                 
                     <div class="mt-4">
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                 
-                    <div class="mt-4">
+                    <div class="mt-4 dark:text-gray-400">
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{% url 'index' %}">Volver al inicio</a> | 
                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{% url 'users:register' %}">Registrarme</a>
                     </div>

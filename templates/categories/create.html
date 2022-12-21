@@ -2,30 +2,30 @@
 
 {% block content %}
 
-<div class="bg-white mx-2 my-4">
-    <div class="py-3 px-4 border-b flex justify-between items-center">
-        <h2 class="text-lg font-medium text-gray-700">Nueva Categoria</h2>
+<div class="mx-2 my-4 bg-white dark:bg-gray-800">
+    <div class="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
+        <h2 class="text-lg font-medium text-gray-700 dark:text-gray-400">Nueva Categoria</h2>
     </div>
     <div class="p-3 text-gray-600">
         <form method="POST">
             {% csrf_token %}
             
-            <div class="p-2 flex">
-                <label class="w-1/4 inline py-2 pr-4 text-right" for="{{ form.name.id_for_label }}">Nombre</label>
+            <div class="flex p-2">
+                <label class="inline w-1/4 py-2 pr-4 text-right dark:text-gray-400" for="{{ form.name.id_for_label }}">Nombre</label>
                 <div class="w-full">
             
-                    <input type="text" name="name" value="{{ form.name.value|default_if_none:"" }}" maxlength="30" required="" id="{{ form.name.id_for_label }}" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3">
+                    <input type="text" name="name" value="{{ form.name.value|default_if_none:"" }}" maxlength="30" required="" id="{{ form.name.id_for_label }}" placeholder="Nombre" class="focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-500 dark:autofill:bg-transparent">
                 
                     <span class="text-sm text-red-600">{{ form.name.errors }}</span>
                 </div>
             </div>
 
-            <div class="p-2 flex">
-                <label class="w-1/4 inline py-2 pr-4 text-right" for="{{ form.description.id_for_label }}">Descripcion</label>
+            <div class="flex p-2">
+                <label class="inline w-1/4 py-2 pr-4 text-right dark:text-gray-400" for="{{ form.description.id_for_label }}">Descripcion</label>
                 <div class="w-full">
 
                     <textarea id="{{ form.description.id_for_label }}" name="description"
-                        class="min-h-[100px] focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3"
+                        class="min-h-[100px] focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none w-full text-base placeholder-gray-400 border border-gray-300 rounded py-1.5 px-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-600 dark:focus:border-blue-500 dark:autofill:bg-transparent"
                          placeholder="Ingrese una descripcion"
                         spellcheck="false">{{ form.description.value|default_if_none:"" }}</textarea>
 
@@ -33,10 +33,10 @@
                 </div>
             </div>
 
-            <div class="p-2 flex mt-4">
-                <label class="w-1/4 inline py-2 pr-4 text-right"></label>
+            <div class="flex p-2 mt-4">
+                <label class="inline w-1/4 py-2 pr-4 text-right"></label>
                 <div class="w-full">
-                    <button class="px-4 py-2 text-sm border border-transparent rounded bg-green-500 text-white hover:bg-green-400 focus:outline-none focus:border-green-500 focus:shadow-outline-green active:bg-green-500 transition duration-150 ease-in-out inline-flex items-center">
+                    <button class="inline-flex items-center px-4 py-2 text-sm text-white transition duration-150 ease-in-out bg-green-500 border border-transparent rounded hover:bg-green-400 focus:outline-none focus:border-green-500 focus:shadow-outline-green active:bg-green-500 dark:bg-green-800 dark:hover:bg-green-700">
                         Crear
                     </button>
                 </div>

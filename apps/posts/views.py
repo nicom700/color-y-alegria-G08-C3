@@ -9,21 +9,24 @@ from .forms import PostForm
 
 from slugify import slugify 
 
+from utils.mixins import IsAdminMixin, is_admin_required
+
 from apps.posts.models import Posts
 from apps.categories.models import Categories
 
 # Create your views here.
-class Index(ListView):
-    template_name = 'posts/index1.html'
+class Index(IsAdminMixin, ListView):
+    template_name = 'posts/index.html'
     model = Posts
     context_object_name = 'posts'
     paginate_by = 10
-
+    
     def get_context_data(self, *args, **kwargs):
         posts = Posts.objects.all()
         categories = Categories.objects.all()
         return {'posts':posts, 'categories':categories}
 
+@is_admin_required()
 def Create(request):
     form = PostForm()
     categories = Categories.objects.all()
@@ -55,6 +58,7 @@ def Create(request):
     }
     return render(request, 'posts/create.html', form_)
 
+@is_admin_required()
 def Edit(request, pk):
     post = Posts.objects.get(pk=pk)
     form = PostForm(instance=post)
@@ -88,7 +92,7 @@ def Edit(request, pk):
     }
     return render(request, 'posts/edit.html', form_)
 
-class Delete(DeleteView):
+class Delete(IsAdminMixin, DeleteView):
     model = Posts
 
     def get_success_url(self):

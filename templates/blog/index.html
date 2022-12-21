@@ -6,13 +6,13 @@
         <div class="w-full lg:w-8/12">
             {% for post in posts %}
             <div class="mt-6">
-                <div class="px-10 py-6 bg-white rounded-lg shadow-md">
-                    <div class="flex items-center justify-between"><span class="font-light text-gray-600">{{ post.updated_at }}</span>
-                        <a href="{% url 'blog:category' post.category.id %}" class="px-2 py-1 font-bold text-gray-100 transition duration-300 bg-gray-600 rounded hover:bg-gray-500">{{ post.category.name }}</a>
+                <div class="px-10 py-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <div class="flex items-center justify-between"><span class="font-light text-gray-600 dark:text-gray-400">{{ post.updated_at }}</span>
+                        <a href="{% url 'blog:category' post.category.id %}" class="px-2 py-1 font-bold text-gray-100 transition duration-300 bg-blue-500 rounded hover:bg-gray-500">{{ post.category.name }}</a>
                     </div>
                     <div class="mt-2">
-                        <a href="{% url 'blog:show' post.slug %}" class="text-2xl font-bold text-gray-700 hover:underline">{{ post.title }}</a>
-                        <p class="mt-2 text-gray-600">{{ post.body|safe|truncatewords:100 }}</p>
+                        <a href="{% url 'blog:show' post.slug %}" class="text-2xl font-bold text-gray-700 dark:text-gray-200 hover:underline">{{ post.title }}</a>
+                        <div class="mt-2 text-gray-600 dark:text-gray-400">{{ post.body|safe|truncatewords:100 }}</div>
                     </div>
                     <div class="flex items-center justify-between mt-4">
                         <a href="{% url 'blog:show' post.slug %}"class="text-blue-500 hover:underline">Leer mas...</a>
@@ -25,7 +25,7 @@
                                     <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                 </div>
                                 {% endif %}
-                                <h1 class="font-bold text-gray-700 hover:underline">{{ post.user.username }}</h1>
+                                <h1 class="font-bold text-gray-700 dark:text-gray-400 hover:underline">{{ post.user.username }}</h1>
                             </a>
                         </div>
                     </div>
@@ -42,13 +42,17 @@
         </div>
         <div class="hidden w-4/12 -mx-8 lg:block">
             <div class="px-8 mt-2">
-                <h1 class="mb-4 text-xl font-bold text-gray-700">Categorias</h1>
-                <div class="flex flex-col max-w-sm px-4 py-6 bg-white rounded-lg shadow-md">
+                <h1 class="mb-4 text-xl font-bold text-gray-700 dark:text-gray-500">Categorias</h1>
+                <div class="flex flex-col max-w-sm px-4 py-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <ul>
                         {% for category in categories %}
-                        <li class="mt-2"><a href="{% url 'blog:category' category.id %}" class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline" name="category">- {{ category.name }}</a></li>
+                        <li class="mt-2">
+                            <a href="{% url 'blog:category' category.id %}" class="mx-1 font-bold text-gray-700 dark:text-gray-400 hover:text-gray-600 hover:underline">- {{ category.name }}</a>
+                        </li>
                         {% empty %}
-                        <li class="mt-2"><a href="#" class="mx-1 font-bold text-gray-700">- No se encontraron categorias</a></li>
+                        <li class="mt-2">
+                            <a href="#" class="mx-1 font-bold text-gray-700 dark:text-gray-400">- No se encontraron categorias</a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -5,21 +5,21 @@
         <ul class="flex justify-center max-md:flex-col max-md:gap-2 max-md:items-center max-md:mx-auto">
             {% if page_obj.number == 1 %}
             <li>
-                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Primera</span>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default dark:bg-gray-800">Primera</span>
             </li>
             {% else %}
             <li>
-                <a href="?page=1" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Primera</a>
+                <a href="?page=1" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg dark:bg-gray-800 dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-700 hover:bg-gray-700 hover:text-gray-200">Primera</a>
             </li>
             {% endif %}
 
             {% if page_obj.has_previous %}
             <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Anterior</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg dark:bg-gray-800 dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-700 hover:bg-gray-700 hover:text-gray-200">Anterior</a>
             </li>
             {% else %}
             <li>
-                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Anterior</span>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default dark:bg-gray-800">Anterior</span>
             </li>
             {% endif %}
 
@@ -41,21 +41,21 @@
 
             {% if page_obj.has_next %}
             <li>
-                <a href="?page={{ page_obj.next_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Siguiente</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg dark:bg-gray-800 dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-700 hover:bg-gray-700 hover:text-gray-200">Siguiente</a>
             </li>
             {% else %}
             <li>
-                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Siguiente</span>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default dark:bg-gray-800">Siguiente</span>
             </li>
             {% endif %}
 
             {% if page_obj.number == paginator.num_pages %}
             <li>
-                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default">Ultima</span>
+                <span class="flex items-center px-3 py-2 mx-1 font-bold text-gray-500 bg-gray-200 rounded-lg cursor-default dark:bg-gray-800">Ultima</span>
             </li>
             {% else %}
             <li>
-                <a href="?page={{paginator.num_pages}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-700 hover:text-gray-200">Ultima</a>
+                <a href="?page={{paginator.num_pages}}" class="flex items-center px-3 py-2 mx-1 font-bold text-gray-700 bg-gray-200 rounded-lg dark:bg-gray-800 dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-700 hover:bg-gray-700 hover:text-gray-200">Ultima</a>
             </li>
             {% endif %}
 

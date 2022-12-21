@@ -6,19 +6,23 @@
         <div class="w-full lg:w-8/12">
             <div>
                 {% if user.is_authenticated %}
-                    <div class="text-gray-700">Bienvenido {{ user }}</div>
+                    <div class="text-gray-700 dark:text-gray-500">Bienvenido {{ user }}</div>
                 {% endif %}
             </div>
         </div>
         <div class="hidden w-4/12 -mx-8 lg:block">
             <div class="px-8 mt-2">
-                <h1 class="mb-4 text-xl font-bold text-gray-700">Categorias</h1>
-                <div class="flex flex-col max-w-sm px-4 py-6 bg-white rounded-lg shadow-md">
+                <h1 class="mb-4 text-xl font-bold text-gray-700 dark:text-gray-500">Categorias</h1>
+                <div class="flex flex-col max-w-sm px-4 py-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <ul>
                         {% for category in categories %}
-                        <li class="mt-2"><a href="{% url 'blog:category' category.id %}" class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline" name="category">- {{ category.name }}</a></li>
+                        <li class="mt-2">
+                            <a href="{% url 'blog:category' category.id %}" class="mx-1 font-bold text-gray-700 dark:text-gray-400 hover:text-gray-600 hover:underline" name="category">- {{ category.name }}</a>
+                        </li>
                         {% empty %}
-                        <li class="mt-2"><a href="#" class="mx-1 font-bold text-gray-700">- No se encontraron categorias</a></li>
+                        <li class="mt-2">
+                            <a href="#" class="mx-1 font-bold text-gray-700 dark:text-gray-400">- No se encontraron categorias</a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>

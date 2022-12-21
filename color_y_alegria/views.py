@@ -7,3 +7,8 @@ def index(request):
     categories = Categories.objects.all()
 
     return render(request, template_name, {'categories': categories})
+
+def nosotros(request):
+    template_name = 'nosotros/nosotros.html'
+
+    return render(request, template_name)
