@@ -23,11 +23,22 @@ Proyecto final del Informatorio 2022 (Grupo 08 - Comisión 3) - para la ONG Colo
     ```
     pip install -r requirements.txt
     ```
+- Instalar paquetes (node)
+
+    ```
+    npm install
+    ```
+- Watch tailwind (solo en desarrollo)
+
+    ```
+    npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch
+    ```
 
 ## Tecnologías 🛠️
 
 * [Django] Framework web
 * [SQL Server] Base de datos
+* [Tailwind] Frontend
 
 ---
 Informatorio 2022 (Grupo 08 - Comisión 3)

@@ -39,6 +39,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 INSTALLED_APPS = [
+    'django_admin_tailwind',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
