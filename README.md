@@ -40,5 +40,11 @@ Proyecto final del Informatorio 2022 (Grupo 08 - Comisión 3) - para la ONG Colo
 * [SQL Server] Base de datos
 * [Tailwind] Frontend
 
+## Integrantes 💪
+
+* nicom700 (Nicolas Moreira)
+* AdrianRistoff (Adrian Ristoff)
+* AlanCoradi95 (Alan Coradi)
+* Kokoteros (Marcos Piedra)
 ---
 Informatorio 2022 (Grupo 08 - Comisión 3)
