@@ -23,6 +23,11 @@ Proyecto final del Informatorio 2022 (Grupo 08 - Comisión 3) - para la ONG Colo
     ```
     pip install -r requirements.txt
     ```
+- Migraciones
+
+    ```
+    python manage.py migrate
+    ```
 - Instalar paquetes (node)
 
     ```
