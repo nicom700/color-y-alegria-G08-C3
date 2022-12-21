@@ -11,8 +11,8 @@ class Posts(models.Model):
     allow_comments = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(Users, on_delete=models.RESTRICT)
-    category = models.ForeignKey(Categories, on_delete=models.RESTRICT)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    category = models.ForeignKey(Categories, on_delete=models.SET_NULL, null = True)
     
     class Meta:
         managed = True

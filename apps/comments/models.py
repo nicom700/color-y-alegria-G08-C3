@@ -7,8 +7,8 @@ class Comments(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(Users, on_delete=models.RESTRICT)
-    post = models.ForeignKey(Posts, on_delete=models.RESTRICT)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
 
     class Meta:
         managed = True

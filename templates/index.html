@@ -4,10 +4,16 @@
 <div class="px-6 py-8">
     <div class="container flex justify-between mx-auto">
         <div class="w-full lg:w-8/12">
-            <div>
+            <div class="mb-8">
                 {% if user.is_authenticated %}
-                    <div class="text-gray-700 dark:text-gray-500">Bienvenido {{ user }}</div>
+                    <div class="text-gray-700 dark:text-gray-500">Bienvenido @{{ user }} ({{ user.first_name }} {{ user.last_name }})</div>
                 {% endif %}
+            </div>
+            <div class="px-10 py-6 text-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex justify-center">
+                    {% load static %}
+                    <img src="{% static 'src/img/logo.jpg' %}" class="border rounded-lg">
+                </div>
             </div>
         </div>
         <div class="hidden w-4/12 -mx-8 lg:block">

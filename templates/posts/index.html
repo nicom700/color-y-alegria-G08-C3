@@ -29,7 +29,7 @@
                     <tr class="odd:bg-gray-100 even:bg-white dark:odd:bg-transparent dark:even:bg-gray-700">
                         <td class="p-3 dark:text-gray-400 whitespace-nowrap">{{ post.id }}</td>
                         <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ post.title }}</td>
-                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ post.category.name }}</td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{% if post.category.id is null %}<span class="text-red-400">Sin categoria</span>{% else %}{{ post.category.name }}{% endif %}</td>
                         <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ post.user.username }}</td>
                         <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ post.created_at }}</td>
                         <td class="p-3 text-sm text-gray-500 whitespace-pre-line dark:text-gray-400">{{ post.updated_at }}</td>
